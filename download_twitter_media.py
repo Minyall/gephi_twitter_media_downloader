@@ -54,8 +54,14 @@ def main():
 
         # Establish Twitter API connection
         print('Establishing API Link...')
-        auth = tweepy.AppAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
-        api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+        try:
+            auth = tweepy.AppAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
+            api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
+        except tweepy.TweepError:
+            print('Error establishing API...')
+            print(f'Is your CONSUMER_KEY correct?: {CONSUMER_KEY}')
+            print(f'Is your CONSUMER_SECRET correct?: {CONSUMER_SECRET}')
+            sys.exit('Quitting')
 
         # Iterate over the Ids check for the presence of media and generate a data dictionary of urls and meta_data
             # for reporting and media retrieval.
