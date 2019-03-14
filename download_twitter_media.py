@@ -16,6 +16,9 @@ def main():
         print('To avoid this prompt in the future please edit the "credentials.py" file.')
         CONSUMER_KEY = input('Please paste your Consumer Key here and press enter: ')
         CONSUMER_SECRET = input('Please paste your Consumer Secret here and press enter: ')
+    else:
+        CONSUMER_KEY = credentials.CONSUMER_KEY
+        CONSUMER_SECRET = credentials.CONSUMER_SECRET
 
     print('Establishing folders...')
     if_no_dir_make(os.path.join('media', 'video'))
@@ -82,8 +85,8 @@ def main():
             if 'medium' in row:
                 item_retrieve(row)
         now_str = dt.datetime.today().strftime('%Y-%m-%d_%H:%M:%S')
-        report_name = f'{file_list[0]}_{now_str}_report.csv'
-        print(f'Writing Report: {report_name[:-4]} to the "reports" folder')
+        report_name = f'{file_list[0][:-4]}_{now_str}_report.csv'
+        print(f'Writing Report: {report_name} to the "reports" folder')
         # Write report
         with open(os.path.join('reports',report_name), mode='w') as csv_file:
             fieldnames = ['original_index','tweet_id','tweet_url','bitrate','type',
