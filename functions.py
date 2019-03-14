@@ -2,6 +2,8 @@ import os
 import requests
 from urllib.error import HTTPError
 from shutil import copyfileobj
+from requests.adapters import HTTPAdapter
+from requests.packages.urllib3.util.retry import Retry
 
 
 def get_video_url(entity, _id, medium):
@@ -48,7 +50,7 @@ def item_retrieve(data_dict):
     try:
         media_dir = os.path.join('media',data_dict['medium'])
         name = os.path.join(media_dir,'{}_{}.{}'.format(data_dict['original_index'],data_dict['tweet_id'], data_dict['type'][-3:]))
-        r = requests.get(data_dict['media_url'], stream=True)
+        r = requests_retry_session().get(data_dict['media_url'], stream=True)
         with open(name, 'wb') as f:
             copyfileobj(r.raw, f)
         data_dict['media_file'] = name
@@ -66,6 +68,25 @@ def if_no_dir_make(path):
             raise
     finally:
     	return path
+
+def requests_retry_session(
+    retries=3,
+    backoff_factor=0.3,
+    status_forcelist=(500, 502, 504),
+    session=None,
+):
+    session = session or requests.Session()
+    retry = Retry(
+        total=retries,
+        read=retries,
+        connect=retries,
+        backoff_factor=backoff_factor,
+        status_forcelist=status_forcelist,
+    )
+    adapter = HTTPAdapter(max_retries=retry)
+    session.mount('http://', adapter)
+    session.mount('https://', adapter)
+    return session
 
 if __name__ == '__main__':
     pass
