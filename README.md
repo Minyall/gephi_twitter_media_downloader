@@ -93,6 +93,25 @@ will automatically add in the full path to your folder.
 * Hold down shift on your keyboard and right-click inside the folder.
 * On the menu, click `Open command windows here`.
 
+### 6. Set up a contained Python Environment (NOT OPTIONAL - do once)
+* First we create a self-contained Python 'Environment'. Think of it as a contained
+box with Python and all the stuff you'll need just for this script.
+* Type the following and hit return.
+
+        conda create -n twitter_env python
+* If it asks you to confirm installing packages confirm `y`.
+
+### 7. 'Step into' your new environment
+* You will need to tell your command prompt to use your environemnt.
+* Type the following and hit return
+* For Windows:
+        activate twitter_env
+* For Mac:
+        source activate twitter_env
+
+* If succesful you should see to the far left of your cursor the word `twitter_env`
+
+
 ### 6. Install Package Requirements (NOT OPTIONAL - do once)
 Before we can use the script we need to ensure your Python environment has
 the packages the script uses. Whether you installed Anaconda or Miniconda
