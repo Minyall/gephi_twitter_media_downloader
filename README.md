@@ -112,7 +112,7 @@ box with Python and all the stuff you'll need just for this script.
 * If succesful you should see to the far left of your cursor the word `twitter_env`
 
 
-### 6. Install Package Requirements (NOT OPTIONAL - do once)
+### 8. Install Package Requirements (NOT OPTIONAL - do once)
 Before we can use the script we need to ensure your Python environment has
 the packages the script uses. Whether you installed Anaconda or Miniconda
 this step is required, but only once.
@@ -124,14 +124,14 @@ this step is required, but only once.
 * You will see a lot of text run past and hopefully will be presented
 with an empty command prompt at the end.
 
-### 7. Quick Checklist
+### 9. Quick Checklist
 * At this point you should be in a command prompt. On the left it should have the name of the
 folder containing the script indicating your command prompt is 'in' your folder.
 * You should have a .csv exported from Gephi in the same folder as the script.
 * You could have completed step 3, though if you haven't you will be prompted for your credentials soon.
 * You should have completed step 6.
 
-### 8. Run the script(!)
+### 10. Run the script(!)
 * Type the following command and hit enter...
 
         python download_twitter_media.py
