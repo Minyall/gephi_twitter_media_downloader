@@ -120,7 +120,7 @@ this step is required, but only once.
 
 * In your command line type
 
-        pip install -r requirements.txt
+        pip install --upgrade -r requirements.txt
 
 * You will see a lot of text run past and hopefully will be presented
 with an empty command prompt at the end.
