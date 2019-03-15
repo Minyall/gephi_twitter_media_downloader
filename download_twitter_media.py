@@ -90,7 +90,7 @@ def main():
         for row in report_data:
             if 'medium' in row:
                 item_retrieve(row)
-        now_str = dt.datetime.today().strftime('%Y-%m-%d_%H:%M:%S')
+        now_str = dt.datetime.today().strftime('%Y-%m-%d')
         report_name = f'{file_list[0][:-4]}_{now_str}_report.csv'
         print(f'Writing Report: {report_name} to the "reports" folder')
         # Write report
