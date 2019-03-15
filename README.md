@@ -106,8 +106,10 @@ box with Python and all the stuff you'll need just for this script.
 * You will need to tell your command prompt to use your environemnt.
 * Type the following and hit return
 * For Windows:
+
         activate twitter_env
 * For Mac:
+
         source activate twitter_env
 
 * If succesful you should see to the far left of your cursor the word `twitter_env`
