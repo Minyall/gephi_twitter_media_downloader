@@ -44,7 +44,7 @@ def main():
         if input('Continue?...y/n').lower() != 'y':
             sys.exit('Quitting')
 
-        with open(file_list[0], mode='r') as f:
+        with open(file_list[0], mode='r', encoding='utf8') as f:
             csv_reader = csv.DictReader(f)
             for i, row in enumerate(csv_reader):
                 if row['twitter_type'] == 'Tweet':
