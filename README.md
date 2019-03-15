@@ -89,9 +89,10 @@ will automatically add in the full path to your folder.
 * Hit return.
 
 **On Windows**
-* Open the folder containing the script.
-* Hold down shift on your keyboard and right-click inside the folder.
-* On the menu, click `Open command windows here`.
+* Open the [command prompt](https://www.howtogeek.com/235101/10-ways-to-open-the-command-prompt-in-windows-10/)
+* Type `cd` and then drag and drop the folder onto the terminal window. This
+will automatically add in the full path to your folder.
+* Hit return.
 
 ### 6. Set up a contained Python Environment (NOT OPTIONAL - do once)
 * First we create a self-contained Python 'Environment'. Think of it as a contained
