@@ -141,4 +141,14 @@ folder containing the script indicating your command prompt is 'in' your folder.
 
 * Follow the on-screen instructions
 
+### (11). Running the Script again
+* Ensure you have moved out your reports and media for safekeeping.
+* When you want to use the script again on different data just complete steps
+4, 5, 7 and 10, i.e. ...
+    * Put your new Gephi file in the same directory as the script
+    * Open up the folder in the command line
+    * Step into your Python environment
+    * Run the script
+
+
 
