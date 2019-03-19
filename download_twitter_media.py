@@ -113,12 +113,12 @@ def main():
         try:
             data = api.get_status(_id, include_entities=True)._json
             data_dict = get_entities(data, _id)
-            data_dict['original_index'] = indexes[i]
+            data_dict['original_row'] = indexes[i] +1
             data_dict['tweet_url'] = f'https://twitter.com/statuses/{str(_id)}'
             report_data.append(data_dict)
 
         except tweepy.TweepError as e:
-            report_data.append({'message': e, 'original_index': indexes[i], 'tweet_id': _id})
+            report_data.append({'message': e, 'original_row': indexes[i]+1, 'tweet_id': _id})
             continue
 
     num_media = len([x for x in report_data if 'medium' in x])
@@ -134,7 +134,7 @@ def main():
     print(f'Writing Report: {report_name} to the "reports" folder')
     # Write report
     with open(os.path.join('reports',report_name), mode='w') as csv_file:
-        fieldnames = ['original_index','tweet_id','tweet_url','bitrate','type',
+        fieldnames = ['original_row','tweet_id','tweet_url','bitrate','type',
                       'medium','media_url','url','media_file','message']
         writer = csv.DictWriter(csv_file,fieldnames=fieldnames)
         writer.writeheader()
