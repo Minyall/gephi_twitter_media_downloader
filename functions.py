@@ -49,7 +49,7 @@ def get_entities(data, _id):
 def item_retrieve(data_dict):
     try:
         media_dir = os.path.join('media',data_dict['medium'])
-        name = os.path.join(media_dir,'{}_{}.{}'.format(data_dict['original_index'],data_dict['tweet_id'], data_dict['type'][-3:]))
+        name = os.path.join(media_dir,'{}_{}.{}'.format(data_dict['original_row'],data_dict['tweet_id'], data_dict['type'][-3:]))
         r = requests_retry_session().get(data_dict['media_url'], stream=True)
         with open(name, 'wb') as f:
             copyfileobj(r.raw, f)

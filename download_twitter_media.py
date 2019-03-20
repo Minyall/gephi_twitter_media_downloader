@@ -113,12 +113,12 @@ def main():
         try:
             data = api.get_status(_id, include_entities=True)._json
             data_dict = get_entities(data, _id)
-            data_dict['original_row'] = indexes[i] +1
+            data_dict['original_row'] = indexes[i] +2
             data_dict['tweet_url'] = f'https://twitter.com/statuses/{str(_id)}'
             report_data.append(data_dict)
 
         except tweepy.TweepError as e:
-            report_data.append({'message': e, 'original_row': indexes[i]+1, 'tweet_id': _id})
+            report_data.append({'message': e, 'original_row': indexes[i]+2, 'tweet_id': _id})
             continue
 
     num_media = len([x for x in report_data if 'medium' in x])
