@@ -60,7 +60,8 @@ def main():
 
     else:
         if args['column'] is not None:
-            print(f"[*] Please ensure your .csv file is in the same folder as this script and that the column containing the tweet ids is named {args['column']}.")
+            print(f"[*] Please ensure your .csv file is in the same folder as this script and that the column "
+                  f"containing the tweet ids is named {args['column']}.")
             if input('[*] When ready enter "y"...').lower() == 'y':
                 # Read in data from .csv and build list of tweet_ids with a parallel list of indexes.
                 indexes = []
@@ -114,9 +115,11 @@ def main():
             print(f'Checked {i} of {len(tweet_ids)} tweets...')
         try:
             data = api.get_status(_id, include_entities=True)._json
+
             data_dict = get_entities(data, _id)
             data_dict['original_row'] = indexes[i] +2
             data_dict['tweet_url'] = f'https://twitter.com/statuses/{str(_id)}'
+            data_dict['user'] = data['user']['screen_name']
             report_data.append(data_dict)
 
         except tweepy.TweepError as e:
@@ -137,7 +140,7 @@ def main():
     # Write report
     with open(os.path.join('reports',report_name), mode='w') as csv_file:
         fieldnames = ['original_row','tweet_id','tweet_url','bitrate','type',
-                      'medium','media_url','media_file','message']
+                      'medium','media_url','media_file','user','message']
         writer = csv.DictWriter(csv_file,fieldnames=fieldnames)
         writer.writeheader()
 
