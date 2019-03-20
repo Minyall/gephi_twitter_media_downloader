@@ -32,7 +32,9 @@ written in Python 3.6.
 
         python download_twitter_media.py -c my_id_column
 8. Follow the on-screen instructions
+9. For a full list of options...
 
+        python download_twitter_media.py --help
 ## I don't use Python / I don't know what I'm doing...
 Not a problem, this script is for people like you!
 
