@@ -16,6 +16,12 @@ your original CSV.
 
 This script was created at the request of the AOIR Digital Methods Workgroup.
 
+##### Citation
+if you use this project in your research please cite. 
+
+`James Allen-Robertson. (2019, April 10). Minyall/gephi_twitter_media_downloader: Zenodo Release v0.1.2.1 (Version v0.1.2.1). Zenodo. http://doi.org/10.5281/zenodo.2634929`
+
+
 # Instructions
 ## I use Python / I know what I'm doing...
 Great! This script requires [Tweepy](http://www.tweepy.org) and was
