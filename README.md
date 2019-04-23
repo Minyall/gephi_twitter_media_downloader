@@ -169,6 +169,18 @@ folder containing the script indicating your command prompt is 'in' your folder.
 
 * Follow the on-screen instructions
 
+### 10c. Exclude media by type (optional)
+* If you want to exclude certain types of media you can use the following arguments...
+    
+        -nV #excludes videos
+        -nP #excludes photos
+        -nA #excludes animated_gifs
+
+* Example: Download only photos using a Gephi generated .csv...
+
+        python download_twitter_media.py -G -nV -nA
+
+
 ### (11). Running the Script again
 * Ensure you have moved out your reports and media for safekeeping.
 * When you want to use the script again on different data just complete steps

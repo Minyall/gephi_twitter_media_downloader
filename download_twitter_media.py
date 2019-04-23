@@ -19,9 +19,9 @@ def main():
     parser.add_argument('-c', '--column', default=None, help='Name of the column containing the tweet ids.', )
     parser.add_argument('-v', '--verbose', action='store_true', default=False,
                         help='Use to output a full report including tweets without associated media', required=False)
-    parser.add_argument('-nV', '--NoVideo', action='store_false', default=True)
-    parser.add_argument('-nP', '--NoPhoto', action='store_false', default=True)
-    parser.add_argument('-nA', '--NoAnimatedGif', action='store_false', default=True)
+    parser.add_argument('-nV', '--NoVideo', action='store_false', default=True, help='Include this argument to exclude videos')
+    parser.add_argument('-nP', '--NoPhoto', action='store_false', default=True, help='Include this argument to exclude photos')
+    parser.add_argument('-nA', '--NoAnimatedGif', action='store_false', default=True, help='Include this argument to exclude animated_gifs')
     args = vars(parser.parse_args())
 
     media_filter['animated_gif'] = args['NoAnimatedGif']
