@@ -19,7 +19,8 @@ This script was created at the request of the AOIR Digital Methods Workgroup.
 ##### Citation
 if you use this project in your research please cite. 
 
-`James Allen-Robertson. (2019, April 10). Minyall/gephi_twitter_media_downloader: Zenodo Release v0.1.2.1 (Version v0.1.2.1). Zenodo. http://doi.org/10.5281/zenodo.2634929`
+`James Allen-Robertson. (2019, April 23). Minyall/gephi_twitter_media_downloader:
+ Media Downloader with Type Filter (Version v0.1.3.0). Zenodo. http://doi.org/10.5281/zenodo.2649073`
 
 
 # Instructions
