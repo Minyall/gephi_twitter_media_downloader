@@ -4,7 +4,6 @@ from urllib.error import HTTPError
 from shutil import copyfileobj
 from requests.adapters import HTTPAdapter
 from requests.packages.urllib3.util.retry import Retry
-from settings import media_filter
 
 
 def get_video_url(entity, _id, medium):
@@ -37,20 +36,13 @@ def get_entities(data, _id):
     entities = []
     if 'media' in target:
         for ent in target['media']:
-            if (ent['type'] == 'video') and (media_filter['video']):
+            if ent['type'] == 'video':
                 data_dict = get_video_url(ent, _id, medium='video')
-            elif (ent['type'] == 'photo') and (media_filter['photo']):
+            elif ent['type'] == 'photo':
                 data_dict = get_photo_url(ent, _id, medium='photo')
-            elif (ent['type'] == 'animated_gif') and (media_filter['animated_gif']):
+            elif ent['type'] == 'animated_gif':
                 data_dict = get_video_url(ent, _id, medium='animated_gif')
-
-            entities.append((data_dict))
-            
-      else:
-          data_dict =  {'tweet_id': _id, 'media_url': 'N/A', 'type': '', 'medium': ent['type']}
-
-      return data_dict
-
+            entities.append(data_dict)
 
     else:
         entities.append({'message': 'No Media Found', 'tweet_id': _id})
@@ -61,13 +53,10 @@ def item_retrieve(data_dict):
     try:
         media_dir = os.path.join('media',data_dict['medium'])
         name = os.path.join(media_dir,'{}_{}.{}'.format(data_dict['original_row'],data_dict['tweet_id'], data_dict['type'][-3:]))
-        if data_dict['media_url'] != 'N/A':
-            r = requests_retry_session().get(data_dict['media_url'], stream=True)
-            with open(name, 'wb') as f:
-                copyfileobj(r.raw, f)
-            data_dict['media_file'] = name
-        else:
-            data_dict['media_file'] = 'N/A'
+        r = requests_retry_session().get(data_dict['media_url'], stream=True)
+        with open(name, 'wb') as f:
+            copyfileobj(r.raw, f)
+        data_dict['media_file'] = name
     except HTTPError:
         data_dict['media_file'] = 'Error - Could Not Retrieve'
         return
