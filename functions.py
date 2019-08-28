@@ -33,6 +33,7 @@ def get_entities(data, _id):
     else:
         return {'message': 'No Media Found', 'tweet_id': _id}
 
+    entities = []
     if 'media' in target:
         for ent in target['media']:
             if ent['type'] == 'video':
@@ -41,10 +42,12 @@ def get_entities(data, _id):
                 data_dict = get_photo_url(ent, _id, medium='photo')
             elif ent['type'] == 'animated_gif':
                 data_dict = get_video_url(ent, _id, medium='animated_gif')
-        return data_dict
+            entities.append((data_dict))
 
     else:
-        return {'message': 'No Media Found', 'tweet_id': _id}
+        entities.append({'message': 'No Media Found', 'tweet_id': _id})
+
+    return entities
 
 def item_retrieve(data_dict):
     try:

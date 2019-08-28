@@ -116,11 +116,12 @@ def main():
         try:
             data = api.get_status(_id, include_entities=True)._json
 
-            data_dict = get_entities(data, _id)
-            data_dict['original_row'] = indexes[i] +2
-            data_dict['tweet_url'] = f'https://twitter.com/statuses/{str(_id)}'
-            data_dict['user'] = data['user']['screen_name']
-            report_data.append(data_dict)
+            data_dict_list = get_entities(data, _id)
+            meta_dict = dict(original_row=indexes[i] +2,
+                             tweet_url=f'https://twitter.com/statuses/{str(_id)}',
+                             user=data['user']['screen_name'])
+            data_dict_list = [{**data_dict, **meta_dict} for data_dict in data_dict_list]
+            report_data.extend(data_dict_list)
 
         except tweepy.TweepError as e:
             report_data.append({'message': e, 'original_row': indexes[i]+2, 'tweet_id': _id})
