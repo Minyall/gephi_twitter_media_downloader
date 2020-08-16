@@ -34,14 +34,15 @@ def get_entities(data, _id):
         return {'message': 'No Media Found', 'tweet_id': _id}
 
     if 'media' in target:
+        entities = []
         for ent in target['media']:
             if ent['type'] == 'video':
-                data_dict = get_video_url(ent, _id, medium='video')
+                entities.append(get_video_url(ent, _id, medium='video'))
             elif ent['type'] == 'photo':
-                data_dict = get_photo_url(ent, _id, medium='photo')
+                entities.append(get_photo_url(ent, _id, medium='photo'))
             elif ent['type'] == 'animated_gif':
-                data_dict = get_video_url(ent, _id, medium='animated_gif')
-        return data_dict
+                entities.append(get_video_url(ent, _id, medium='animated_gif'))
+        return entities
 
     else:
         return {'message': 'No Media Found', 'tweet_id': _id}
@@ -49,7 +50,13 @@ def get_entities(data, _id):
 def item_retrieve(data_dict):
     try:
         media_dir = os.path.join('media',data_dict['medium'])
-        name = os.path.join(media_dir,'{}_{}.{}'.format(data_dict['original_row'],data_dict['tweet_id'], data_dict['type'][-3:]))
+        increment = 0
+        while True:
+            name = os.path.join(media_dir,'{}_{}_{}.{}'.format(data_dict['original_row'],data_dict['tweet_id'],increment, data_dict['type'][-3:]))
+            if os.path.exists(name):
+                increment += 1
+            else:
+                break
         r = requests_retry_session().get(data_dict['media_url'], stream=True)
         with open(name, 'wb') as f:
             copyfileobj(r.raw, f)
